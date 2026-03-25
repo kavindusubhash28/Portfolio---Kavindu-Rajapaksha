@@ -17,8 +17,22 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Test and coverage output
+coverage
+
+# Tool caches
+.cache
+.vite
+*.tsbuildinfo

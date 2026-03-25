@@ -40,7 +40,7 @@ const HeroSection = () => {
     const bootSequence = [
         { text: '> Initializing Kavindu.exe…', delay: 0 },
         { text: '> Loading modules...', delay: 400 },
-        { text: '> React ✓  Node.js ✓  Python ✓', delay: 800 },
+        { text: '> React ✓  Flask ✓  Java✓', delay: 800 },
         { text: '> Full Stack Developer Loaded ✓', delay: 1300 },
         { text: '> Portfolio Ready.', delay: 1800 },
     ];
@@ -118,12 +118,12 @@ const HeroSection = () => {
             </AnimatePresence>
 
             {/* Main Content */}
-            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-20 lg:pt-0">
-                <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-10">
+            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 w-full pt-20 lg:pt-0 lg:h-screen">
+                <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-10 lg:gap-10 lg:h-full">
 
                     {/* Left Side - Text */}
                     <motion.div
-                        className="lg:max-w-[50%] xl:max-w-[45%] text-center lg:text-left flex-shrink-0"
+                        className="lg:max-w-[50%] xl:max-w-[45%] text-center lg:text-left flex-shrink-0 lg:self-center"
                         initial={{ opacity: 0, y: 40 }}
                         animate={showContent ? { opacity: 1, y: 0 } : {}}
                         transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -164,8 +164,8 @@ const HeroSection = () => {
                             transition={{ delay: 0.6, duration: 0.6 }}
                             className="text-lg lg:text-xl text-text-secondary font-light max-w-lg mx-auto lg:mx-0 mb-3"
                         >
-                            Building Digital Products That Feel{' '}
-                            <span className="text-accent font-medium">Effortless.</span>
+                            Building Smart & Scalable Digital Products with {' '}
+                            <span className="text-accent font-medium">AI Integration.</span>
                         </motion.p>
 
                         <motion.p
@@ -174,7 +174,7 @@ const HeroSection = () => {
                             transition={{ delay: 0.7, duration: 0.6 }}
                             className="text-sm text-text-muted font-mono tracking-wide mb-8"
                         >
-                            Full Stack Developer &bull; Problem Solver &bull; Tech Enthusiast
+                            Full Stack Developer &bull; AI Enthusiast &bull; Problem Solver
                         </motion.p>
 
                         {/* CTA Buttons */}
@@ -220,7 +220,7 @@ const HeroSection = () => {
                         >
                             {[
                                 { value: '2+', label: 'Years Exp.' },
-                                { value: '15+', label: 'Projects' },
+                                { value: '10+', label: 'Projects' },
                                 { value: '10+', label: 'Technologies' },
                             ].map((stat, i) => (
                                 <div key={i} className="text-center lg:text-left">
@@ -233,7 +233,7 @@ const HeroSection = () => {
 
                     {/* Right Side - Image */}
                     <motion.div
-                        className="flex-1 relative flex items-center justify-center min-w-0"
+                        className="flex-1 relative flex items-center justify-center lg:justify-end min-w-0 lg:self-end lg:pr-6 xl:pr-10"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={showContent ? { opacity: 1, scale: 1 } : {}}
                         transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}

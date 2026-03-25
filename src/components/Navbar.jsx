@@ -63,7 +63,7 @@ const Navbar = () => {
                             data-cursor-hover
                         >
                             <span className="font-heading font-bold text-xl lg:text-2xl text-white">
-                                K<span className="text-accent">.</span>S
+                                K<span className="text-accent">.</span>R
                             </span>
                             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300" />
                         </motion.button>
