@@ -3,54 +3,38 @@ import { useRef } from 'react';
 
 const experiences = [
     {
-        year: '2024 – Present',
-        title: 'Software Developer',
-        company: 'Tech Company',
-        description: 'Building scalable web applications using React, Node.js, and cloud services. Leading frontend architecture decisions and mentoring junior developers.',
-        tech: ['React', 'Node.js', 'AWS', 'MongoDB'],
-        type: 'work',
-    },
-    {
-        year: '2023 – 2024',
-        title: 'Full Stack Developer Intern',
-        company: 'Software Firm',
-        description: 'Developed full-stack features for client projects. Implemented RESTful APIs, database schemas, and responsive UI components. Contributed to agile sprints.',
-        tech: ['React', 'Express', 'MySQL', 'Docker'],
-        type: 'work',
-    },
-    {
-        year: '2022 – 2023',
-        title: 'Freelance Developer',
-        company: 'Self-Employed',
-        description: 'Designed and developed custom web solutions for local businesses. Created e-commerce sites, portfolios, and management dashboards.',
-        tech: ['JavaScript', 'HTML/CSS', 'PHP', 'WordPress'],
-        type: 'freelance',
-    },
-    {
-        year: '2021 – Present',
-        title: 'BSc in Information Technology',
-        company: 'University',
-        description: 'Pursuing degree with focus on software engineering, data structures, algorithms, and web technologies. Maintaining strong academic performance.',
-        tech: ['Java', 'Python', 'Data Structures', 'Algorithms'],
+        year: '2023 – Present',
+        title: 'BSc (Hons) Computer Science (Undergraduate)',
+        company: 'IIT Sri Lanka - University of Westminster',
+        description: 'Following Computer Science degree focused on software engineering, FullStack development, data structures, algorithms,Machine Learning and Data mining and database systems.',
+        tech: ['Java', 'Python', 'Data Structures', 'Databases', 'Machine Learning', 'Data Mining'],
         type: 'education',
+    },
+    {
+        year: '2026',
+        title: 'Actively Seeking Software Engineering Internship',
+        company: 'Open to Internship Opportunities',
+        description: 'Looking for an internship where I can contribute to real-world projects, collaborate with experienced teams, and grow as a developer.',
+        tech: ['Problem Solving', 'Team Collaboration', 'Git/GitHub', 'Communication'],
+        type: 'opportunity',
     },
 ];
 
 const typeColors = {
-    work: '#FF7A00',
-    freelance: '#4FC3F7',
+    project: '#4FC3F7',
     education: '#81C784',
+    opportunity: '#FFB74D',
 };
 
 const typeIcons = {
-    work: (
+    project: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
     ),
-    freelance: (
+    opportunity: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
         </svg>
     ),
     education: (
@@ -84,7 +68,7 @@ const ExperienceSection = () => {
                         <div className="hidden sm:block flex-1 h-px bg-gradient-to-r from-dark-400 to-transparent" />
                     </div>
                     <p className="text-text-muted font-mono text-sm tracking-wider uppercase">
-                        My professional journey
+                        Learning journey and projects
                     </p>
                 </motion.div>
 
