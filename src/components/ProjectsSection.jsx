@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 const projects = [
         {
@@ -46,13 +46,6 @@ const projects = [
         live: '#',
         featured: false,
     },
-];
-
-const filters = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'fullstack', label: 'Full Stack' },
-    { id: 'frontend', label: 'Frontend' },
-    { id: 'backend', label: 'Backend' },
 ];
 
 const ProjectCard = ({ project, index }) => (
@@ -152,12 +145,6 @@ const ProjectCard = ({ project, index }) => (
 const ProjectsSection = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: '-100px' });
-    const [activeFilter, setActiveFilter] = useState('all');
-
-    const filteredProjects =
-        activeFilter === 'all'
-            ? projects
-            : projects.filter((p) => p.category === activeFilter);
 
     return (
         <section id="projects" className="relative py-24 lg:py-32 overflow-hidden">
@@ -180,37 +167,14 @@ const ProjectsSection = () => {
                     </p>
                 </motion.div>
 
-                {/* Filters */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: 0.2, duration: 0.5 }}
-                    className="flex flex-wrap gap-3 mb-10"
-                >
-                    {filters.map((filter) => (
-                        <button
-                            key={filter.id}
-                            onClick={() => setActiveFilter(filter.id)}
-                            data-cursor-hover
-                            className={`px-5 py-2.5 rounded-xl text-sm font-heading font-medium transition-all duration-300 ${activeFilter === filter.id
-                                    ? 'bg-accent/15 text-accent border border-accent/30'
-                                    : 'bg-dark-600/40 text-text-secondary border border-white/[0.04] hover:text-white hover:border-white/[0.08]'
-                                }`}
-                        >
-                            {filter.label}
-                        </button>
-                    ))}
-                </motion.div>
-
                 {/* Projects Grid */}
                 <motion.div
-                    key={activeFilter}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3 }}
                     className="grid grid-cols-1 md:grid-cols-2 gap-5"
                 >
-                    {filteredProjects.map((project, i) => (
+                    {projects.map((project, i) => (
                         <ProjectCard key={project.id} project={project} index={i} />
                     ))}
                 </motion.div>

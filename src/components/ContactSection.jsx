@@ -6,15 +6,56 @@ const ContactSection = () => {
     const isInView = useInView(ref, { once: true, margin: '-100px' });
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [focused, setFocused] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+
+    const formspreeId = import.meta.env.VITE_FORMSPREE_FORM_ID;
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Form submission logic
-        window.location.href = `mailto:kavindurajapaksha11@gmail.com?subject=Portfolio Contact from ${formData.name}&body=${formData.message}`;
+
+        if (!formspreeId) {
+            setSubmitStatus({
+                type: 'error',
+                message: 'Contact form is not configured yet. Please set VITE_FORMSPREE_FORM_ID in your .env file.',
+            });
+            return;
+        }
+
+        setIsSubmitting(true);
+        setSubmitStatus({ type: '', message: '' });
+
+        try {
+            const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Submission failed');
+            }
+
+            setSubmitStatus({
+                type: 'success',
+                message: 'Message sent successfully. I will get back to you soon.',
+            });
+            setFormData({ name: '', email: '', message: '' });
+        } catch {
+            setSubmitStatus({
+                type: 'error',
+                message: 'Failed to send message. Please try again in a moment.',
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const socials = [
@@ -98,6 +139,7 @@ const ContactSection = () => {
                                     onChange={handleChange}
                                     onFocus={() => setFocused('name')}
                                     onBlur={() => setFocused('')}
+                                    required
                                     className="w-full bg-dark-600/40 border border-white/[0.06] rounded-xl px-4 py-3.5 text-white text-sm font-body outline-none focus:border-accent/50 transition-colors"
                                 />
                             </div>
@@ -118,6 +160,7 @@ const ContactSection = () => {
                                     onChange={handleChange}
                                     onFocus={() => setFocused('email')}
                                     onBlur={() => setFocused('')}
+                                    required
                                     className="w-full bg-dark-600/40 border border-white/[0.06] rounded-xl px-4 py-3.5 text-white text-sm font-body outline-none focus:border-accent/50 transition-colors"
                                 />
                             </div>
@@ -138,22 +181,33 @@ const ContactSection = () => {
                                     onChange={handleChange}
                                     onFocus={() => setFocused('message')}
                                     onBlur={() => setFocused('')}
+                                    required
                                     className="w-full bg-dark-600/40 border border-white/[0.06] rounded-xl px-4 py-3.5 text-white text-sm font-body outline-none focus:border-accent/50 transition-colors resize-none"
                                 />
                             </div>
 
                             <motion.button
                                 type="submit"
+                                disabled={isSubmitting}
                                 className="btn-primary w-full px-8 py-3.5 rounded-xl font-heading font-semibold text-white text-sm flex items-center justify-center gap-2"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                                 data-cursor-hover
                             >
-                                <span>Send Message</span>
+                                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                 </svg>
                             </motion.button>
+
+                            {submitStatus.message && (
+                                <p
+                                    className={`text-sm ${submitStatus.type === 'success' ? 'text-green-400' : 'text-red-400'}`}
+                                    role="status"
+                                >
+                                    {submitStatus.message}
+                                </p>
+                            )}
                         </form>
                     </motion.div>
 
